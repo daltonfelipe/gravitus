@@ -21,4 +21,4 @@ O Módulo **Particle** representa o objeto no espaço (**Simulator**) e faz as i
 
 O **Simulator** é o espaço de simulação e é reponsável por fazer com que as parículas possam interagir entre si.
 
-Finalmente, o módulo **Vector** é um módulo auxiliar para trabalhar com vetore bidimensionais.
+Finalmente, o módulo **Vector** é um módulo auxiliar para trabalhar com vetores bidimensionais.
