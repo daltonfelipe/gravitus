@@ -5,11 +5,8 @@ import pygame
 
 
 def run(particles):
-
-    simulator = Simulator(particles)
-
     pygame.init()
-
+    simulator = Simulator(particles)
     display = pygame.display.set_mode((Constants.WIDTH, Constants.HEIGHT))
     clock = pygame.time.Clock()
     surf = pygame.Rect(0, 0, Constants.WIDTH, Constants.HEIGHT)
@@ -25,13 +22,12 @@ def run(particles):
                     Constants.RUNNING = False
         
         # black background
-        pygame.draw.rect(display, Constants.BLACK_COLOR, surf)
-        
+        display.fill(Constants.BLACK_COLOR)
         simulator.show(display)
+        simulator.draw_trace(display)
         simulator.render()
         simulator.update(Constants.DT)
         simulator.window_edges(Constants.WIDTH, Constants.HEIGHT)
-
         pygame.display.flip()
         clock.tick(Constants.FPS)
 

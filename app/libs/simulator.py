@@ -24,6 +24,12 @@ class Simulator:
                 particle.render()
 
 
+    def draw_trace(self, display):
+        for particle in self.particles:
+            if not particle.destroyed:
+                particle.draw_trace(display)
+
+
     def window_edges(self, w, h):
         for particle in self.particles:
             if not particle.destroyed:

@@ -9,7 +9,7 @@ class Particle(pygame.rect.Rect):
     
     simulator = None
     destroyed = False
-    has_edges = False
+    has_edges = False  
 
     def __init__(self, name, position, radius, vellocity=Vector(0, 0), forces=Vector(0, 0), color=(255, 255, 255)):
         self.name = name
@@ -20,6 +20,7 @@ class Particle(pygame.rect.Rect):
         self.acceleration = Vector(0, 0)
         self.forces = forces
         self.density = 1
+        self.positions = []
 
 
     def update_position(self, dt):
@@ -75,9 +76,12 @@ class Particle(pygame.rect.Rect):
     
 
     def show(self, display):
+        self.positions.append([self.centerx, self.centery])
+        if len(self.positions) > 150:
+            self.positions.pop(0)
         pygame.draw.ellipse(display, self.color, self)
 
-    
+
     def window_edges(self, w, h):
         if self.has_edges:
             if self.position.x >= w or self.position.x <= 0:
@@ -97,4 +101,6 @@ class Particle(pygame.rect.Rect):
         self.render()
 
 
-    
+    def draw_trace(self, display):
+        if len(self.positions) > 2:
+            pygame.draw.lines(display, (155, 155, 155), False, self.positions[1::], 1)
