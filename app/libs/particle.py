@@ -1,7 +1,6 @@
-from math import pi
 from app.libs.vector import Vector
 from app.libs.utils import newton_gravity_law
-from functools import reduce
+from math import pi
 import pygame
 import random
 
