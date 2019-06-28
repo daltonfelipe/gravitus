@@ -31,7 +31,7 @@ class Particle(pygame.rect.Rect):
         self.position.add(self.vellocity.copy().mult(dt))
         self.centerx = self.position.x
         self.centery = self.position.y
-        self.print_particle()
+        #self.print_particle()
 
     
     def attraction_to(self, other_particle):
@@ -73,9 +73,10 @@ class Particle(pygame.rect.Rect):
         self.height = self.radius
         self.volume = (4/3)*(pi)*(self.radius**3)
         self.mass = self.density*self.volume
+        return self
     
 
-    def show(self, display):
+    def draw(self, display):
         self.positions.append([self.centerx, self.centery])
         if len(self.positions) > 150:
             self.positions.pop(0)
@@ -104,3 +105,16 @@ class Particle(pygame.rect.Rect):
     def draw_trace(self, display):
         if len(self.positions) > 2:
             pygame.draw.lines(display, (155, 155, 155), False, self.positions[1::], 1)
+    
+    
+    def at(self, position):
+        self.centerx = position[0]
+        self.centery = position[1]
+        self.render()
+        return self
+
+
+    def click(self):
+        if self.collidepoint(pygame.mouse.get_pos()):
+            print('Click in {}'.format(self.name))
+
